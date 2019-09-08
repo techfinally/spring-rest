@@ -132,3 +132,108 @@ camelCase
 	}
 }
 ```
+
+## 3. TEST
+
+### 3.1 Method GET
+
+http://localhost:8080/api/v1/employees/
+
+```
+@GetMapping(consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<ResponseData> findByAll() {
+	ResponseData response = new ResponseData();
+	response.setCode(200);
+	response.setData(listItem);
+	return new ResponseEntity<>(response, HttpStatus.OK);
+}
+```	
+
+```
+{
+	"code": 200,
+	"data": {
+		1: {
+			"empNo": "1",
+			"empName": "Truong Duong",
+			"empMail": "truongduong@techfinally.com",
+			"empPhone": "+84.888.987.789"
+		},
+		2: {
+			"empNo": "2",
+			"empName": "Minh Nguyen",
+			"empMail": "minhnguyen@techfinally.com",
+			"empPhone": "+84.777.123.123"
+		}
+	}
+}
+```
+
+http://localhost:8080/api/v1/employees/2/
+
+```
+@GetMapping(value = "/{id}/", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<ResponseData> findById(@PathVariable String id) {
+	ResponseData response = new ResponseData();
+	response.setCode(200);
+	response.setData(listItem.get(id));
+	return new ResponseEntity<>(response, HttpStatus.OK);
+}
+```	
+
+```
+{
+	"code": 200,
+	"data": {
+		"empNo": "2",
+		"empName": "Minh Nguyen",
+		"empMail": "minhnguyen@techfinally.com",
+		"empPhone": "+84.777.123.123"
+	}
+}
+```
+
+### 3.2 Method POST
+
+
+```
+@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<ResponseData> create(@RequestBody Employee employee) {
+    listItem.put(employee.getEmpNo(), employee);
+    ResponseData response = new ResponseData();
+    response.setCode(200);
+    esponse.setData("ok");
+    return new ResponseEntity<>(response, HttpStatus.OK);
+}
+```	
+
+### 3.3 Method PUT
+
+```
+@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<ResponseData> update(@RequestBody Employee employee) {
+	listItem.put(employee.getEmpNo(), employee);
+	ResponseData response = new ResponseData();
+	response.setCode(200);
+	response.setData("ok");
+	return new ResponseEntity<>(response, HttpStatus.OK);
+}
+```	
+
+### 3.4 Method DELETE
+
+```
+@DeleteMapping(value = "/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<ResponseData> delete(@PathVariable String id) {
+    listItem.remove(id);
+    ResponseData response = new ResponseData();
+    response.setCode(200);
+    response.setData("ok");
+    return new ResponseEntity<>(response, HttpStatus.OK);
+}
+```	
+
+
+
+
+
