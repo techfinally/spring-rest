@@ -1,4 +1,4 @@
-# spring-rest
+# Spring Boot - REST - RESTful API
 
 ## 1. REST và RESTful API
 
