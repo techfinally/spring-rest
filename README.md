@@ -199,11 +199,11 @@ public ResponseEntity<ResponseData> findById(@PathVariable String id) {
 ```
 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<ResponseData> create(@RequestBody Employee employee) {
-    listItem.put(employee.getEmpNo(), employee);
-    ResponseData response = new ResponseData();
-    response.setCode(200);
-    esponse.setData("ok");
-    return new ResponseEntity<>(response, HttpStatus.OK);
+	listItem.put(employee.getEmpNo(), employee);
+	ResponseData response = new ResponseData();
+	response.setCode(200);
+	response.setData("ok");
+	return new ResponseEntity<>(response, HttpStatus.OK);
 }
 ```	
 
@@ -225,11 +225,11 @@ public ResponseEntity<ResponseData> update(@RequestBody Employee employee) {
 ```
 @DeleteMapping(value = "/{id}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<ResponseData> delete(@PathVariable String id) {
-    listItem.remove(id);
-    ResponseData response = new ResponseData();
-    response.setCode(200);
-    response.setData("ok");
-    return new ResponseEntity<>(response, HttpStatus.OK);
+	listItem.remove(id);
+	ResponseData response = new ResponseData();
+	response.setCode(200);
+	response.setData("ok");
+	return new ResponseEntity<>(response, HttpStatus.OK);
 }
 ```	
 
